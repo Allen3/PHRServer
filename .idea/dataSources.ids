@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - phr@107.191.61.26" uuid="6b467b89-e613-41e6-ac12-f37c104e1f17">
+    <database-info product="MySQL" version="5.5.44-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.36 ( Revision: 4fc1f969f740409a4e03750316df2c0e429f3dc8 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="phr"/>
+    <table name="department" schema="" catalog="phr" type="TABLE">
+      <column name="dep_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="dep_name" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="hid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="dep_id"/>
+      <foreign-key name="hid" columns="hid" ref-table="hospital" ref-schema="" ref-catalog="phr" ref-columns="hid" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="dep_id" table="doctor" schema="" catalog="phr" columns="dep_id"/>
+    </table>
+    <table name="doctor" schema="" catalog="phr" type="TABLE">
+      <column name="doctor_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="doc_name" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="dep_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="doc_profile" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="doc_phone" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="doctor_id"/>
+      <foreign-key name="dep_id" columns="dep_id" ref-table="department" ref-schema="" ref-catalog="phr" ref-columns="dep_id" update-rule="0" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="equipment" schema="" catalog="phr" type="TABLE">
+      <column name="equip_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="equip_name" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="equip_price" sqlType="FLOAT" precision="20" scale="0" nullable="true" jdbcType="7"/>
+      <primary-key name="PRIMARY" columns="equip_id"/>
+    </table>
+    <table name="friends" schema="" catalog="phr" type="TABLE">
+      <column name="person_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="person_id2" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="person_id"/>
+      <foreign-key name="friend1" columns="person_id" ref-table="personinfo" ref-schema="" ref-catalog="phr" ref-columns="person_id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="friend2" columns="person_id2" ref-table="personinfo" ref-schema="" ref-catalog="phr" ref-columns="person_id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="friend2" unique="false" columns="person_id2"/>
+    </table>
+    <table name="hospital" schema="" catalog="phr" type="TABLE">
+      <column name="hid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="hname" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="haddress" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="hprofile" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="hid"/>
+      <exported-key name="hid" table="department" schema="" catalog="phr" columns="hid"/>
+    </table>
+    <table name="newsinfo" schema="" catalog="phr" type="TABLE">
+      <column name="news_type" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="new_title" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="news_content" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="personinfo" schema="" catalog="phr" type="TABLE">
+      <column name="person_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="gender" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="age" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="phone" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="vip" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="bloodtype" sqlType="VARCHAR" precision="4" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="person_id"/>
+      <exported-key name="friend1" table="friends" schema="" catalog="phr" columns="person_id"/>
+      <exported-key name="friend2" table="friends" schema="" catalog="phr" columns="person_id2"/>
+    </table>
+  </data-source>
+</component>

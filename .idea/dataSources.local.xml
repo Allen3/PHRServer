@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - phr@107.191.61.26" uuid="6b467b89-e613-41e6-ac12-f37c104e1f17">
+      <secret-storage>master_key</secret-storage>
+      <user-name>DBtester</user-name>
+      <schema-pattern>phr.*</schema-pattern>
+      <default-schemas>phr.*</default-schemas>
+    </data-source>
+  </component>
+</project>
