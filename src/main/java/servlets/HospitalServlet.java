@@ -1,6 +1,6 @@
 package servlets;
 
-import Beans.NewsInfo;
+import Beans.Hospital;
 import com.google.gson.Gson;
 import utils.Constants;
 import utils.DatabaseUtil;
@@ -19,9 +19,8 @@ import java.util.ArrayList;
 /**
  * Created by Allen on 2015/7/28.
  */
-@WebServlet(name = "newsServlet", urlPatterns = "/newsServlet")
-public class NewsServlet extends HttpServlet {
-
+@WebServlet(name = "hospitalServlet", urlPatterns = "/hospitalServlet")
+public class HospitalServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doGet(req, resp);
@@ -29,31 +28,31 @@ public class NewsServlet extends HttpServlet {
         String json = null;
         String sql = null;
         ResultSet resultSet = null;
-        ArrayList<NewsInfo> newsList;
+        ArrayList<Hospital> hospitalList;
 
-        String newsType = req.getParameter(Constants._NEWSTYPE_);
+        sql = "SELECT * FROM hospital";
 
-        sql = "SELECT * FROM newsinfo WHERE news_Type=" + "'" + newsType + "'";
 //TEST
         System.out.println("sql = " + sql);
-
         try {
             resultSet = DatabaseUtil.queryData(sql);
-            newsList = new ArrayList<NewsInfo>();
+            hospitalList = new ArrayList<>();
 
             while (resultSet.next()) {
-                NewsInfo newsInfo = new NewsInfo();
+                Hospital hospital = new Hospital();
 
-                newsInfo.setNews_Type(resultSet.getString(Constants.NEWS_TYPE));
-                newsInfo.setNews_Title(resultSet.getString(Constants.NEWS_TITLE));
-                newsInfo.setNews_Content(resultSet.getString(Constants.NEWS_CONTENT));
+                hospital.setHid(resultSet.getInt(Constants.HID));
+                hospital.sethName(resultSet.getString(Constants.HNAME));
+                hospital.sethAddress(resultSet.getString(Constants.HADDRESS));
+                hospital.sethProfile(resultSet.getString(Constants.HPROFILE));
 
-                newsList.add(newsInfo);
+                hospitalList.add(hospital);
             }
 
-            json = new Gson().toJson(newsList);
+            json = new Gson().toJson(hospitalList);
 //TEST
             System.out.println("json = " + json);
+
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -67,6 +66,5 @@ public class NewsServlet extends HttpServlet {
         out.print(json);
         out.flush();
         out.close();
-
     }
 }
