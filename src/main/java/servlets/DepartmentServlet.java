@@ -1,5 +1,6 @@
 package servlets;
 
+import Beans.Department;
 import Beans.Hospital;
 import com.google.gson.Gson;
 import utils.Constants;
@@ -19,8 +20,8 @@ import java.util.ArrayList;
 /**
  * Created by Allen on 2015/7/28.
  */
-@WebServlet(name = "hospitalServlet", urlPatterns = "/hospitalServlet")
-public class HospitalServlet extends HttpServlet {
+@WebServlet(name = "departmentServlet", urlPatterns = "/departmentServlet")
+public class DepartmentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doGet(req, resp);
@@ -28,28 +29,32 @@ public class HospitalServlet extends HttpServlet {
         String json = null;
         String sql = null;
         ResultSet resultSet = null;
-        ArrayList<Hospital> hospitalList;
+        ArrayList<Department> departmentList;
 
-        sql = "SELECT * FROM hospital;";
+        String hospitalID = req.getParameter(Constants.HID);
+        if (hospitalID == null) {
+            sql = "SELECT * FROM department;";
+        } else {
+            sql = "SELECT * FROM department WHERE " + Constants.HID + "=" + "'" + hospitalID + "'" + ";";
+        }
 
 //TEST
         System.out.println("sql = " + sql);
         try {
             resultSet = DatabaseUtil.queryData(sql);
-            hospitalList = new ArrayList<>();
+            departmentList = new ArrayList<>();
 
             while (resultSet.next()) {
-                Hospital hospital = new Hospital();
+                Department department = new Department();
 
-                hospital.setHid(resultSet.getInt(Constants.HID));
-                hospital.sethName(resultSet.getString(Constants.HNAME));
-                hospital.sethAddress(resultSet.getString(Constants.HADDRESS));
-                hospital.sethProfile(resultSet.getString(Constants.HPROFILE));
+                department.setDep_id(resultSet.getInt(Constants.DEP_ID));
+                department.setDep_name(resultSet.getString(Constants.DEP_NAME));
+                department.setHid(resultSet.getInt(Constants.HID));
 
-                hospitalList.add(hospital);
+                departmentList.add(department);
             }
 
-            json = new Gson().toJson(hospitalList);
+            json = new Gson().toJson(departmentList);
 //TEST
             System.out.println("json = " + json);
 

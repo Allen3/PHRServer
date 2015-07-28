@@ -46,4 +46,9 @@ public class Constants {
     public static final String HNAME = "hname";
     public static final String HADDRESS = "haddress";
     public static final String HPROFILE = "hprofile";
+
+    //  Database Table Department.
+    public static final String DEP_ID = "dep_id";
+    public static final String DEP_NAME = "dep_name";
+    //public static final String HID = "hid";               F.K.
 }

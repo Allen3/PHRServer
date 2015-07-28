@@ -48,7 +48,7 @@
     </table>
     <table name="newsinfo" schema="" catalog="phr" type="TABLE">
       <column name="news_type" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
-      <column name="new_title" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="news_title" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
       <column name="news_content" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
     </table>
     <table name="personinfo" schema="" catalog="phr" type="TABLE">
