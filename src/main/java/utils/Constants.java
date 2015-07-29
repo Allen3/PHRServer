@@ -63,4 +63,13 @@ public class Constants {
     public static final String EQUIP_ID = "equip_id";
     public static final String EQUIP_NAME = "equip_name";
     public static final String EQUIP_PRICE = "equip_price";
+
+    //  Database Table Person_Health
+    public static final String PERSON_HEALTH_ID = "person_health_id";
+    public static final String PROMPT_DATE = "prompt_date";
+    public static final String DRUG_NAME = "drug_name";
+    public static final String DRUG_DOSE = "drug_dose";
+    public static final String DIAG_DATE = "diag_date";
+    //public static final String PERSON_ID = "person_id";       F.K.
+
 }
