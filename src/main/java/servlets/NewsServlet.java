@@ -2,6 +2,7 @@ package servlets;
 
 import Beans.NewsInfo;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import utils.Constants;
 import utils.DatabaseUtil;
 
@@ -51,9 +52,11 @@ public class NewsServlet extends HttpServlet {
                 newsList.add(newsInfo);
             }
 
-            json = new Gson().toJson(newsList);
+            json =  new Gson().toJson(newsList);
 //TEST
             System.out.println("json = " + json);
+
+
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
