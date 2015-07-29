@@ -51,4 +51,11 @@ public class Constants {
     public static final String DEP_ID = "dep_id";
     public static final String DEP_NAME = "dep_name";
     //public static final String HID = "hid";               F.K.
+
+    //  Database Table Doctor.
+    public static final String DOCTOR_ID = "doctor_id";
+    public static final String DOC_NAME = "doc_name";
+    //public static final String DEP_ID = "dep_id";           F.K.
+    public static final String DOC_PROFILE = "doc_profile";
+    public static final String DOC_PHONE = "doc_phone";
 }
