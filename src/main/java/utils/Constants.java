@@ -58,4 +58,9 @@ public class Constants {
     //public static final String DEP_ID = "dep_id";           F.K.
     public static final String DOC_PROFILE = "doc_profile";
     public static final String DOC_PHONE = "doc_phone";
+
+    //  Database Table Equipment.
+    public static final String EQUIP_ID = "equip_id";
+    public static final String EQUIP_NAME = "equip_name";
+    public static final String EQUIP_PRICE = "equip_price";
 }
