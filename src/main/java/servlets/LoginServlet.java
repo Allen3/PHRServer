@@ -18,7 +18,7 @@ import java.sql.SQLException;
  * Created by Allen on 2015/7/26.
  */
 @WebServlet(name = "loginServlet", urlPatterns = "/loginServlet")
-public class LoginRegisterServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,11 +32,13 @@ public class LoginRegisterServlet extends HttpServlet {
         String name = req.getParameter(Constants.NAME);
         String password = req.getParameter(Constants.PASSWORD);
 
-
         sql = "SELECT * FROM personinfo where " + " (" +
                 Constants.NAME + "=" + "'" + name + "'" + " AND " +
                 Constants.PASSWORD + "=" + "'" + password + "'" +
                 ");";
+
+//TEST
+        System.out.println("sql = " + sql);
 
         try {
             resultSet = DatabaseUtil.queryData(sql);

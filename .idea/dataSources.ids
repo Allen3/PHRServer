@@ -16,14 +16,14 @@
       <exported-key name="dep_id" table="doctor" schema="" catalog="phr" columns="dep_id"/>
     </table>
     <table name="diagnose" schema="" catalog="phr" type="TABLE">
-      <column name="register_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
-      <column name="person_id" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
-      <column name="doctor_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <primary-key name="PRIMARY" columns="register_id"/>
+      <column name="person_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="doctor_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="diag_date" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="person_id,doctor_id,diag_date"/>
       <foreign-key name="register_doctor" columns="doctor_id" ref-table="doctor" ref-schema="" ref-catalog="phr" ref-columns="doctor_id" update-rule="0" delete-rule="0" deferrability="2"/>
       <foreign-key name="register_person" columns="person_id" ref-table="personinfo" ref-schema="" ref-catalog="phr" ref-columns="person_id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="fk1" table="person_health" schema="" catalog="phr" columns="diag_date"/>
       <index name="register_doctor" unique="false" columns="doctor_id"/>
-      <index name="register_person" unique="false" columns="person_id"/>
     </table>
     <table name="doctor" schema="" catalog="phr" type="TABLE">
       <column name="doctor_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -65,15 +65,15 @@
       <primary-key name="PRIMARY" columns="news_id"/>
     </table>
     <table name="person_health" schema="" catalog="phr" type="TABLE">
-      <column name="person_health_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
       <column name="prompt_date" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
       <column name="drug_name" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
       <column name="drug_dose" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
-      <column name="diag_date" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
-      <column name="person_id" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="person_health_id"/>
+      <column name="diag_date" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="person_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="person_id,diag_date"/>
+      <foreign-key name="fk1" columns="diag_date" ref-table="diagnose" ref-schema="" ref-catalog="phr" ref-columns="diag_date" update-rule="0" delete-rule="0" deferrability="2"/>
       <foreign-key name="health_id" columns="person_id" ref-table="personinfo" ref-schema="" ref-catalog="phr" ref-columns="person_id" update-rule="0" delete-rule="0" deferrability="2"/>
-      <index name="health_id" unique="false" columns="person_id"/>
+      <index name="fk1" unique="false" columns="diag_date"/>
     </table>
     <table name="personinfo" schema="" catalog="phr" type="TABLE">
       <column name="person_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>

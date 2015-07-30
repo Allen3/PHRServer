@@ -1,5 +1,6 @@
 package servlets;
 
+import Beans.Diagnose;
 import Beans.Doctor;
 import com.google.gson.Gson;
 import utils.Constants;
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -74,5 +76,47 @@ public class DoctorServlet extends HttpServlet {
         out.flush();
         out.close();
 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String json = null;
+        String sql = null;
+        String result;
+
+        BufferedReader reader = req.getReader();
+        StringBuilder builder = new StringBuilder();
+        for (String line = null; (line = reader.readLine()) != null; ) {
+            builder.append(line).append(System.getProperty("line.separator"));
+        }
+
+        Diagnose diagnose = new Gson().fromJson(builder.toString(), Diagnose.class);
+
+        sql = "INSERT INTO diagnose ( person_id, doctor_id, diag_date ) VALUES " +
+                "( " + diagnose.getPerson_id() + ", " +
+                "'" + diagnose.getDoctor_id() + "', " +
+                "'" + diagnose.getDiagnose_date() + "'" +
+                ");";
+//TEST
+        System.out.println("sql = " + sql);
+
+        try {
+            if (DatabaseUtil.update(sql)) {
+                json = new Gson().toJson(Constants._DIAGNOSE_SUCCESS_);
+            } else {
+                json = new Gson().toJson(Constants._DIAGNOSE_FAIL_);
+            }
+
+            resp.setContentType("application/json;charset=UTF-8");
+            PrintWriter out = resp.getWriter();
+
+            out.print(json);
+            out.flush();
+            out.close();
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

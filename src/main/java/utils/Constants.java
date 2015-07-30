@@ -13,6 +13,14 @@ public class Constants {
     public static final String _REGISTER_SUCCESS_ = "_REGISTER__SUCCESS_";
     public static final String _REGISTER_FAIL_ = "_REGISTER_DENY_";
 
+    //  Diagnose Module.
+    public static final String _DIAGNOSE_SUCCESS_ = "_DIAGNOSE_SUCCESS_";
+    public static final String _DIAGNOSE_FAIL_ = "_DIAGNOSE_DENY_";
+
+    //  Submit Personhealth Module.
+    public static final String _SUBMIT_PERSONHEALTH_SUCCESS_ = "_SUBMIT_PERSONHEALTH_SUCCESS_";
+    public static final String _SUBMIT_PERSONHEALTH_FAIL_ = "_SUBMIT_PERSONHEALTH_DENY_";
+
     //  Database Table PersonInfo.
     public static final String PERSON_ID = "person_id";
     public static final String NAME = "name";
@@ -53,6 +61,7 @@ public class Constants {
     //public static final String HID = "hid";               F.K.
 
     //  Database Table Doctor.
+    public static final String DOCTOR = "doctor";
     public static final String DOCTOR_ID = "doctor_id";
     public static final String DOC_NAME = "doc_name";
     //public static final String DEP_ID = "dep_id";           F.K.
@@ -65,11 +74,14 @@ public class Constants {
     public static final String EQUIP_PRICE = "equip_price";
 
     //  Database Table Person_Health
-    public static final String PERSON_HEALTH_ID = "person_health_id";
     public static final String PROMPT_DATE = "prompt_date";
     public static final String DRUG_NAME = "drug_name";
     public static final String DRUG_DOSE = "drug_dose";
     public static final String DIAG_DATE = "diag_date";
     //public static final String PERSON_ID = "person_id";       F.K.
 
+    //  Database Table Diagnose
+    //public static final String PERSON_ID = "person_id";       F.K.
+    //public static final String DOCTOR_ID = "doctor_id";         F.K.
+    //public static final String DIAG_DATE = "diag_date";         F.K.
 }
